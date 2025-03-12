@@ -29,8 +29,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::resource('/users', UserController::class);
     Route::resource('/clients', ClientController::class);
-    Route::resource('/cases', CaseController::class);
     Route::resource('/attorneys', AttorneyController::class);
+    Route::resource('/cases', CaseController::class);
+    Route::post('/cases/{id}/approve', [CaseController::class, 'approve'])->name('cases.approve');
+    Route::get('/events', [DashboardController::class, 'fetchEvents']);
+    Route::get('/calender', [DashboardController::class, 'calender'])->name('calender.index');
 
 });
 // court dates

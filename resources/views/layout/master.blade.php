@@ -21,6 +21,8 @@
 
     <!-- App Styles -->
     <link href="{{ asset('assets/css/app.min.css') }} " rel="stylesheet" type="text/css" id="app-style" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
@@ -77,6 +79,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <!-- CDN -->
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> --}}
+
     <script>
         $(document).ready(function() {
             $("#searchInput").on("keyup", function() {
@@ -87,6 +93,25 @@
             });
         });
 
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar')
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: '/events',
+                eventClick: function(info) {
+                alert("📌 Client: " + info.event.title +
+                      "\n📅 Court Date: " + info.event.start.toISOString().slice(0, 10) +
+                      "\n📜 Case Details: " + info.event.extendedProps.description);
+            },
+                headerToolbar: {
+                    left: 'prev,next today', // Left side: Previous, Next, Today button
+                    center: 'title', // Center: Calendar Title
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay' // Right side: Month, Week, Day buttons
+                },
+
+            });
+            calendar.render()
+        });
 
         toastr.options = {
             "closeButton": true,
@@ -109,9 +134,6 @@
             @endforeach
         @endif
     </script>
-
-
-
 </body>
 
 </html>

@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('attorney_id');
-            $table->date('court_date');
-            $table->text('case_details');
+            $table->date('court_date')->nullable();
+            $table->text('case_details')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('attorney_id')->references('id')->on('attorneys')->onDelete('cascade');

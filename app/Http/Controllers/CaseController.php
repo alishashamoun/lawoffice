@@ -21,8 +21,8 @@ class CaseController extends Controller
     public function create()
     {
         $clientcases = ClientCase::get();
-        $clients = Client::select('id', 'name')->get();
-        $attorneys = Attorney::select('id', 'name')->get();
+        $clients = Client::select('id', 'name', 'status')->get();
+        $attorneys = Attorney::select('id', 'name', 'status')->get();
         return view('clientcase.create', compact('clientcases', 'clients', 'attorneys'));
     }
 
@@ -76,10 +76,10 @@ class CaseController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'client_id' => 'required|exists:clients,id',
-            'attorney_id' => 'required|exists:attorneys,id',
-            'court_date' => 'required',
-            'case_details' => 'required|string',
+            'client_id' => 'nullable|exists:clients,id',
+            'attorney_id' => 'nullable|exists:attorneys,id',
+            'court_date' => 'nullable',
+            'case_details' => 'nullable|string',
 
         ]);
         $clientcase = ClientCase::find($id);
@@ -105,5 +105,13 @@ class CaseController extends Controller
       $clientcase->delete();
 
         return redirect()->back()->with('success', 'Successfully Deleted.');
+    }
+
+    public function approve($id) {
+        $case = ClientCase::findOrFail($id);
+        $case->status = 'approved';
+        $case->save();
+
+        return back()->with('success', 'Case approved successfully.');
     }
 }

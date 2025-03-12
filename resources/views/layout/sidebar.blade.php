@@ -23,7 +23,7 @@
                         <span>Contacts</span>
                     </a>
                 </li>
-                <li class=""><a href="#"><i class="fa-regular fa-calendar-days"></i>
+                <li class=""><a href="{{ route('calender.index') }}"><i class="fa-regular fa-calendar-days"></i>
                         <span>Calender</span></a>
                 </li>
                 <li class=""><a href="#"><i class="fa-solid fa-briefcase"></i>

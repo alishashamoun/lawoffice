@@ -21,15 +21,19 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="client_id" class="form-label">Select Client</label>
+
                                 <select name="client_id" id="client_id" class="form-control">
                                     <option value="">Select Client</option>
                                     @foreach ($clients as $client)
+                                    @if ($client->status == 'active')
                                         <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 @error('client_id')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
+
                             </div>
                         </div>
 
@@ -40,7 +44,9 @@
                                 <select name="attorney_id" id="attorney_id" class="form-control">
                                     <option value="">Select Attorney</option>
                                     @foreach ($attorneys as $attorney)
-                                        <option value="{{ $attorney->id }}">{{ $attorney->name }}</option>
+                                    @if ($attorney->status == 'active')
+                                    <option value="{{ $attorney->id }}">{{ $attorney->name }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('attorney_id')
@@ -72,6 +78,24 @@
                                 @enderror
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">
+                                    Status
+                                </label>
+                                <select type="text" name="status" id="status" class="form-control">
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        @error('status')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-success">Submit</button>
