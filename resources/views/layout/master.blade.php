@@ -94,24 +94,46 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            const calendarEl = document.getElementById('calendar')
+            const calendarEl = document.getElementById('calendar');
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 events: '/events',
-                eventClick: function(info) {
-                alert("📌 Client: " + info.event.title +
-                      "\n📅 Court Date: " + info.event.start.toISOString().slice(0, 10) +
-                      "\n📜 Case Details: " + info.event.extendedProps.description);
-            },
-                headerToolbar: {
-                    left: 'prev,next today', // Left side: Previous, Next, Today button
-                    center: 'title', // Center: Calendar Title
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay' // Right side: Month, Week, Day buttons
+
+                eventContent: function(arg) {
+                    let div = document.createElement('div');
+                    div.innerHTML = `
+                <div class="event-details" style="
+                    background-color: #f37203; /* Sticky Note Color */
+                    padding: 5px;
+                    border-radius: 5px;
+                    font-size: 12px;
+                    cursor: pointer;
+                    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+                ">
+                    <strong>📌 Client:</strong> ${arg.event.title} <br>
+                    <strong>📅 Court Date:</strong> ${arg.event.start.toLocaleDateString('en-CA')} <br>
+
+                </div>
+            `;
+
+                    div.addEventListener('click', function() {
+                        window.location.href = `/cases/${arg.event.id}`;
+                    });
+
+                    return {
+                        domNodes: [div]
+                    };
                 },
 
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
             });
-            calendar.render()
+            calendar.render();
         });
+
 
         toastr.options = {
             "closeButton": true,

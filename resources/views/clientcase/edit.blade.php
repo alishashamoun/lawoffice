@@ -75,6 +75,23 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">
+                                    Status
+                                </label>
+                                <select type="text" name="status" id="status" class="form-control">
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                </select>
+                            </div>
+                        </div>
+                        @error('status')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <button type="submit" class="btn btn-sm btn-success">Submit</button>
                 </form>
 

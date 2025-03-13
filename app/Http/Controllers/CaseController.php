@@ -54,9 +54,11 @@ class CaseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $clientcase = ClientCase::find($id);
+
+        return view('clientcase.show', compact('clientcase'));
     }
 
     /**
@@ -99,7 +101,7 @@ class CaseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
       $clientcase = ClientCase::find($id);
       $clientcase->delete();

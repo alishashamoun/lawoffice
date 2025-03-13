@@ -25,7 +25,7 @@
                                 <select name="client_id" id="client_id" class="form-control">
                                     <option value="">Select Client</option>
                                     @foreach ($clients as $client)
-                                    @if ($client->status == 'active')
+                                        @if ($client->status == 'active')
                                         <option value="{{ $client->id }}">{{ $client->name }}</option>
                                         @endif
                                     @endforeach
@@ -89,7 +89,7 @@
                                 <select type="text" name="status" id="status" class="form-control">
                                     <option value="pending">Pending</option>
                                     <option value="approved">Approved</option>
-                                    
+
                                 </select>
                             </div>
                         </div>

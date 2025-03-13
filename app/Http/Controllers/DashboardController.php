@@ -19,14 +19,14 @@ class DashboardController extends Controller
 
     public function fetchEvents()
     {
-        $events = ClientCase::where('status', 'approved') // Sirf approved cases dikhayein
+        $events = ClientCase::where('status', 'approved')
             ->get(['id', 'client_id', 'attorney_id', 'court_date', 'case_details']);
 
         // FullCalendar format mein convert karein
         $formattedEvents = $events->map(function ($event) {
             return [
                 'id'    => $event->id,
-                'title' => $event->client->name . ' - ' . $event->attorney->name,
+                'title' => $event->client->name,
                 'start' => $event->court_date,
                 'description' => $event->case_details,
                 'backgroundColor' => 'orange', // Optional: Custom Color

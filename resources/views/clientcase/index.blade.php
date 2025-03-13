@@ -52,6 +52,7 @@
                                                 </form>
                                             @endif
                                             <a href="{{ route('cases.edit', $clientcase->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                                            <a href="{{ route('cases.show', $clientcase->id) }}" class="btn btn-sm btn-info">Show</a>
 
                                             <form action="{{ route('cases.destroy', $clientcase->id) }}" method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete this client?')">

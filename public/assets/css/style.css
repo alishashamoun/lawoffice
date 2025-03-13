@@ -4207,5 +4207,12 @@ a.btn.btn-sm.btn-primary.create {
 .fc-scroller {
     /* overflow: visible !important; */
 }
-
-
+.fc .fc-col-header-cell-cushion{
+    color: black !important;
+}
+tr.fc-scrollgrid-section.fc-scrollgrid-section-body.fc-scrollgrid-section-liquid td{
+    background-color: white !important;
+}
+tr.fc-scrollgrid-section.fc-scrollgrid-section-header th{
+    background-color: #ffdfcc;
+}
