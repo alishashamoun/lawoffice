@@ -4,29 +4,76 @@
             <img src="{{ asset('assets/img/logo.png') }}" alt="">
             </a>
         </div>
-        <ul>
+        <ul class="nav flex-column">
             <div class="First_sec">
-                <li class="active"><a href="{{ route('dashboard') }}"><i
-                            class="fa-solid fa-grid-2"></i><span>Dashboard</span></a>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}"
+                        class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                        <i class="fa-solid fa-table-columns"></i><span>Dashboard</span>
+                    </a>
                 </li>
-                <li class="active"><a href="{{ route('clients.index') }}"><i class="fa-regular fa-address-book"></i>
-                        <span>Client Management</span></a>
+                <li class="nav-item">
+                    <a href="{{ route('clients.index') }}"
+                        class="nav-link {{ request()->routeIs('clients.*') ? 'active' : '' }}">
+                        <i class="fa-regular fa-address-book"></i> <span>Client Management</span>
+                    </a>
                 </li>
-                <li class=""><a href="{{ route('cases.index') }}"><i class="fa-regular fa-address-book"></i>
-                    <span>Case Management</span></a>
-            </li>
-                <li class=""><a href="{{ route('attorneys.index') }}"><i class="fa-regular fa-file"></i>
-                    <span>Attorneys</span></a>
-            </li>
-                <li class="">
+                <li class="nav-item">
+                    <a href="{{ route('cases.index') }}"
+                        class="nav-link {{ request()->routeIs('cases.*') ? 'active' : '' }}"><i
+                            class="fa-regular fa-address-book"></i>
+                        <span>Case Management</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('attorneys.index') }}"
+                     class="nav-link {{ request()->routeIs('attorneys.*') ? 'active' : '' }}"
+                    ><i class="fa-regular fa-file"></i>
+                        <span>Attorneys</span></a>
+                </li>
+                {{-- <li class="">
                     <a href="#"><i class="fa-regular fa-address-book"></i>
                         <span>Contacts</span>
                     </a>
-                </li>
-                <li class=""><a href="{{ route('calender.index') }}"><i class="fa-regular fa-calendar-days"></i>
+                </li> --}}
+                <li class="nav-item"><a href="{{ route('calender.index') }}"
+                     class="nav-link {{ request()->routeIs('calender.index') ? 'active' : '' }}"
+                    ><i class="fa-regular fa-calendar-days"></i>
                         <span>Calender</span></a>
                 </li>
-                <li class=""><a href="#"><i class="fa-solid fa-briefcase"></i>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa-regular fa-file"></i>
+                        <span>
+                            Document Generation
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa-solid fa-layer-group"></i>
+                        <span>
+                            Report
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}"
+                    ><i class="fa-solid fa-users"></i><span>
+                            User Management
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa-solid fa-gear"></i><span>
+                            Settings
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa-solid fa-shield"></i><span>
+                            Backup & Security
+                        </span>
+                    </a>
+                </li>
+                {{-- <li class=""><a href="#"><i class="fa-solid fa-briefcase"></i>
                         <span>Time Entries</span></a>
                 </li>
                 <li class=""><a href="#"><i class="fa-solid fa-wallet"></i>
@@ -38,27 +85,10 @@
                             Payment
                         </span>
                     </a>
-                </li>
-                <li class="">
-                    <a href="#"><i class="fa-regular fa-file"></i>
-                        <span>
-                            Documents
-                        </span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="#"><i class="fa-solid fa-layer-group"></i>
-                        <span>
-                            Report
-                        </span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="{{ route('users.index') }}"><i class="fa-solid fa-users"></i><span>
-                            User Management
-                        </span>
-                    </a>
-                </li>
+                </li> --}}
+
+
+
             </div>
         </ul>
         <div class="usersss">

@@ -237,46 +237,6 @@ body {
     text-decoration: underline;
 }
 
-/* /* @separated content panels
------------------------------------------------------------ */
-/* .split-panels {
-	-webkit-box-shadow:none;
-	-moz-box-shadow:none;
-	box-shadow:none;
-	background:none;
-}
-
-.split-panels .sub-level{
-	margin:8px 0;
-	background: #ffffff;
-	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-	-webkit-transition: box-shadow 0.2s;
-	-moz-transition: box-shadow 0.2s;
-	transition: box-shadow 0.2s;
-}
-
-.split-panels .sub-level:hover{
-	-webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
-	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
-}
-
-.split-panels .sub-level .mdn-container{ border-bottom:0; }
-.split-panels a,
-.split-panels .accordion-title{
-	-webkit-box-shadow:none;
-	-moz-box-shadow:none;
-	box-shadow:none;
-}
-
-.split-panels .accordion-toggle:checked + .accordion-title{
-	-webkit-box-shadow: inset 0 -1px #EDF1F2;
-	-moz-box-shadow: inset 0 -1px #EDF1F2;
-	box-shadow: inset 0 -1px #EDF1F2;
-} */
-
 .mdn-accordion .mdn-accordion-ripple {
     position: absolute;
     border-radius: 50%;
@@ -478,6 +438,7 @@ body {
     color: #fff;
     font-size: 18px;
     font-weight: 400;
+    padding: none !important;
 }
 
 .Btndiv a {
@@ -3011,22 +2972,11 @@ body {
 
 .First_sec {
     margin-top: 10px;
-    width: 200px;
+    width: none !important;
     padding-bottom: 10px;
 }
 
-#sidebar ul li:hover {
-    background-color: #f85e05;
-    color: white;
-}
 
-#sidebar ul li:hover a {
-    color: white;
-}
-
-#sidebar ul li:hover a span {
-    color: white;
-}
 
 .usersss {
     padding-top: 140px;
@@ -3068,6 +3018,18 @@ body {
     width: 80%;
 }
 
+.nav-item .nav-link.active {
+    background-color: #f85e05 !important;
+    color: white !important;
+    padding: 15px;
+    border-radius: 25px;
+    width: 100%;
+}
+
+.nav-item .nav-link.active span {
+    color: white !important;
+}
+
 #sidebar ul {
     position: relative;
     left: -13px;
@@ -3080,7 +3042,7 @@ body {
 #sidebar ul li {
     display: flex;
     align-items: center;
-    padding: 10px 10px;
+    padding: 5px 10px;
     color: black;
     cursor: pointer;
     border-radius: 25px;
@@ -3096,7 +3058,6 @@ body {
     margin-right: 20px;
     transition: opacity 0.3s ease;
 }
-
 #sidebar ul li span {
     margin-left: 0;
     display: flex;
@@ -3106,7 +3067,10 @@ body {
     white-space: nowrap;
     transition: opacity 0.3s ease;
     color: #767474;
+    font-size: 15px !important;
 }
+
+
 
 .Imgofproduct {
     width: 100%;
