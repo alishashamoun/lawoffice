@@ -26,7 +26,7 @@
                                     <option value="">Select Client</option>
                                     @foreach ($clients as $client)
                                         @if ($client->status == 'active')
-                                        <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                            <option value="{{ $client->id }}">{{ $client->name }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -44,9 +44,9 @@
                                 <select name="attorney_id" id="attorney_id" class="form-control">
                                     <option value="">Select Attorney</option>
                                     @foreach ($attorneys as $attorney)
-                                    @if ($attorney->status == 'active')
-                                    <option value="{{ $attorney->id }}">{{ $attorney->name }}</option>
-                                    @endif
+                                        @if ($attorney->status == 'active')
+                                            <option value="{{ $attorney->id }}">{{ $attorney->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 @error('attorney_id')
@@ -68,6 +68,30 @@
                             </div>
                         </div>
 
+                        <!-- Time -->
+
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="start_time" class="form-label">Start Time:</label>
+                                <input type="time" name="start_time" class="form-control" required>
+                                @error('start_time')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="end_time" class="form-label">End Time:</label>
+                                <input type="time" name="end_time" class="form-control" required>
+                                @error('end_time')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <!-- Case Details -->
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -78,9 +102,6 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">

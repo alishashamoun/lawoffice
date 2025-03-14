@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attorney;
 use App\Models\Client;
 use App\Models\ClientCase;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CaseController extends Controller
@@ -35,6 +36,8 @@ class CaseController extends Controller
             'client_id' => 'required|exists:clients,id',
             'attorney_id' => 'required|exists:attorneys,id',
             'court_date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
             'case_details' => 'required|string',
 
         ]);
@@ -43,6 +46,8 @@ class CaseController extends Controller
             'client_id' => $request->client_id,
             'attorney_id' => $request->attorney_id,
             'court_date' => $request->court_date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
             'case_details' => $request->case_details,
 
         ]);
@@ -66,9 +71,9 @@ class CaseController extends Controller
      */
     public function edit($id)
     {
-      $clientcase = ClientCase::find($id);
-      $clients = Client::select('id', 'name')->get();
-      $attorneys = Attorney::select('id', 'name')->get();
+        $clientcase = ClientCase::find($id);
+        $clients = Client::select('id', 'name')->get();
+        $attorneys = Attorney::select('id', 'name')->get();
         return view('clientcase.edit', compact('clientcase', 'clients', 'attorneys'));
     }
 
@@ -81,6 +86,8 @@ class CaseController extends Controller
             'client_id' => 'nullable|exists:clients,id',
             'attorney_id' => 'nullable|exists:attorneys,id',
             'court_date' => 'nullable',
+            'start_time' => 'required',
+            'end_time' => 'required',
             'case_details' => 'nullable|string',
 
         ]);
@@ -90,6 +97,8 @@ class CaseController extends Controller
             'client_id' => $request->client_id,
             'attorney_id' => $request->attorney_id,
             'court_date' => $request->court_date,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
             'case_details' => $request->case_details,
 
         ]);
@@ -103,17 +112,20 @@ class CaseController extends Controller
      */
     public function destroy($id)
     {
-      $clientcase = ClientCase::find($id);
-      $clientcase->delete();
+        $clientcase = ClientCase::find($id);
+        $clientcase->delete();
 
-        return redirect()->back()->with('success', 'Successfully Deleted.');
+
+        return redirect()->back()->with('success', 'Successfully Deleted.' );
     }
 
-    public function approve($id) {
+    public function approve($id)
+    {
         $case = ClientCase::findOrFail($id);
         $case->status = 'approved';
         $case->save();
 
         return back()->with('success', 'Case approved successfully.');
     }
+
 }

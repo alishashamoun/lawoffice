@@ -11,45 +11,42 @@
                 </div>
             </div>
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-border mb-0">
-                        <thead>
+            <div class="card-body table-responsive-xl">
+                <table id="casesTable" class="table table-bordered table-striped border">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $id = 1; @endphp
+                        @foreach ($users as $user)
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Action</th>
+                                <td>{{ $id++ }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>
+                                    @foreach ($user->getRoleNames() as $v)
+                                        <span class="badge text-bg-success">{{ $v }}</span>
+                                    @endforeach
+                                </td>
+                                <td class="d-flex gap-1">
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this user?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @php $id = 1; @endphp
-                            @foreach ($users as $user)
-                                <tr>
-                                    <td>{{ $id++ }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        @foreach ($user->getRoleNames() as $v)
-                                            <span class="badge text-bg-success">{{ $v }}</span>
-                                        @endforeach
-                                    </td>
-                                    <td class="d-flex gap-1">
-                                        <a href="{{ route('users.edit', $user->id) }}"
-                                            class="btn btn-sm btn-secondary">Edit</a>
-                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                            onsubmit="return confirm('Are you sure you want to delete this user?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

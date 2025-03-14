@@ -13,6 +13,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('attorneys.index') }}"
+                     class="nav-link {{ request()->routeIs('attorneys.*') ? 'active' : '' }}"
+                    ><i class="fa-regular fa-file"></i>
+                        <span>Attorneys</span></a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('clients.index') }}"
                         class="nav-link {{ request()->routeIs('clients.*') ? 'active' : '' }}">
                         <i class="fa-regular fa-address-book"></i> <span>Client Management</span>
@@ -24,12 +30,7 @@
                             class="fa-regular fa-address-book"></i>
                         <span>Case Management</span></a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('attorneys.index') }}"
-                     class="nav-link {{ request()->routeIs('attorneys.*') ? 'active' : '' }}"
-                    ><i class="fa-regular fa-file"></i>
-                        <span>Attorneys</span></a>
-                </li>
+
                 {{-- <li class="">
                     <a href="#"><i class="fa-regular fa-address-book"></i>
                         <span>Contacts</span>

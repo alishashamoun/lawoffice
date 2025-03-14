@@ -3057,6 +3057,7 @@ body {
     font-size: 20px;
     margin-right: 20px;
     transition: opacity 0.3s ease;
+    color: #767474;
 }
 #sidebar ul li span {
     margin-left: 0;
@@ -3084,6 +3085,7 @@ body {
 
 .sub-head {
     border-bottom: 1px solid #707070ad;
+
     padding-bottom: 5px;
     margin-bottom: 15px;
     font-size: 35px;
@@ -3312,10 +3314,10 @@ td {
 
 /* User management 3 End */
 
-#sidebar ul li.active {
+/* #sidebar ul li.active {
     background-color: #f85e05;
     color: white;
-}
+} */
 
 .First_sec li.active a {
     color: #fff !important;
@@ -4180,3 +4182,9 @@ tr.fc-scrollgrid-section.fc-scrollgrid-section-body.fc-scrollgrid-section-liquid
 tr.fc-scrollgrid-section.fc-scrollgrid-section-header th{
     background-color: #ffdfcc;
 }
+table.dataTable thead th,
+table.dataTable thead td {
+    padding: 10px !important; 
+    border-bottom: 1px solid #d5d2d2;
+}
+

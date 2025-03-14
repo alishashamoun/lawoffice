@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('attorney_id');
             $table->date('court_date')->nullable();
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
             $table->text('case_details')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();

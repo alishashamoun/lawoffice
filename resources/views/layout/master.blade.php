@@ -26,6 +26,9 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <title>Law Office</title>
@@ -72,9 +75,10 @@
 
     <!-- Bootstrap Bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -86,14 +90,14 @@
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> --}}
 
     <script>
-        $(document).ready(function() {
-            $("#searchInput").on("keyup", function() {
-                let value = $(this).val().toLowerCase();
-                $("#clientTable tbody tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-                });
-            });
-        });
+        // $(document).ready(function() {
+        //     $("#searchInput").on("keyup", function() {
+        //         let value = $(this).val().toLowerCase();
+        //         $("#clientTable tbody tr").filter(function() {
+        //             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        //         });
+        //     });
+        // });
 
         document.addEventListener('DOMContentLoaded', function() {
             const calendarEl = document.getElementById('calendar');
@@ -112,9 +116,8 @@
                     cursor: pointer;
                     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
                 ">
-                    <strong>📌 Client:</strong> ${arg.event.title} <br>
-                    <strong>📅 Court Date:</strong> ${arg.event.start.toLocaleDateString('en-CA')} <br>
-
+                <strong>📌 Client:</strong> ${arg.event.title} <br>
+                <strong>📅 Court Date:</strong> ${new Date(arg.event.start).toLocaleDateString('en-CA')} <br>
                 </div>
             `;
 
@@ -135,6 +138,11 @@
             });
             calendar.render();
         });
+
+        $(document).ready(function() {
+            $('#casesTable').DataTable();
+        });
+
 
 
         toastr.options = {

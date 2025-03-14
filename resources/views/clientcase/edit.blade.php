@@ -63,8 +63,32 @@
                             </div>
                         </div>
 
-                        <!-- Case Details -->
-                        <div class="col-md-6">
+                            <!-- Time -->
+
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="start_time" class="form-label">Start Time:</label>
+                                    <input type="time" name="start_time" value="{{ $clientcase->start_time }}" class="form-control" required>
+                                    @error('start_time')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="end_time" class="form-label">End Time:</label>
+                                    <input type="time" name="end_time" value="{{ $clientcase->end_time }}" class="form-control" required>
+                                    @error('end_time')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="row">
+                          <!-- Case Details -->
+                          <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="case_details" class="form-label">Case Details</label>
                                 <textarea name="case_details" class="form-control" id="case_details" rows="3" placeholder="Enter Case Details">{{ $clientcase->case_details }}</textarea>
@@ -73,17 +97,14 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">
                                     Status
                                 </label>
                                 <select type="text" name="status" id="status" class="form-control">
-                                    <option value="pending">Pending</option>
-                                    <option value="approved">Approved</option>
+                                    <option value="pending" {{ $clientcase->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="approved" {{ $clientcase->status == 'approved' ? 'selected' : '' }}>Approved</option>
                                 </select>
                             </div>
                         </div>
